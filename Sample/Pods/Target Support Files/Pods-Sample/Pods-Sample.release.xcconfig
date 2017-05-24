@@ -1,8 +1,8 @@
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/LogInWindow" "${PODS_ROOT}/Headers/Public/fishhook"
-LIBRARY_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/LogInWindow" "$PODS_CONFIGURATION_BUILD_DIR/fishhook"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/LogInWindow" -isystem "${PODS_ROOT}/Headers/Public/fishhook"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"LogInWindow" -l"fishhook"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/CocoaLumberjack" "${PODS_ROOT}/Headers/Public/EPMLogger" "${PODS_ROOT}/Headers/Public/GCDWebServer" "${PODS_ROOT}/Headers/Public/LogInWindow" "${PODS_ROOT}/Headers/Public/fishhook"
+LIBRARY_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/CocoaLumberjack" "$PODS_CONFIGURATION_BUILD_DIR/EPMLogger" "$PODS_CONFIGURATION_BUILD_DIR/GCDWebServer" "$PODS_CONFIGURATION_BUILD_DIR/LogInWindow" "$PODS_CONFIGURATION_BUILD_DIR/fishhook"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/CocoaLumberjack" -isystem "${PODS_ROOT}/Headers/Public/EPMLogger" -isystem "${PODS_ROOT}/Headers/Public/GCDWebServer" -isystem "${PODS_ROOT}/Headers/Public/LogInWindow" -isystem "${PODS_ROOT}/Headers/Public/fishhook"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"CocoaLumberjack" -l"EPMLogger" -l"GCDWebServer" -l"LogInWindow" -l"fishhook" -l"z" -framework "CFNetwork" -framework "MobileCoreServices"
 PODS_BUILD_DIR = $BUILD_DIR
 PODS_CONFIGURATION_BUILD_DIR = $PODS_BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.

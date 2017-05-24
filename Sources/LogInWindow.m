@@ -6,14 +6,34 @@
 //
 
 #import "LogInWindow.h"
+#import <sys/uio.h>
 #import "fishhook/fishhook.h"
 
 void logInWindow(bool flag) {
-    if (flag) {
-        [[logInWindowManager share] setupInWindow];
-    } else {
-        [[logInWindowManager share] hideFromWindow];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (flag) {
+            [[logInWindowManager share] setupInWindow];
+        } else {
+            [[logInWindowManager share] hideFromWindow];
+        }
+    });
+}
+
+
+static ssize_t (*orig_writev)(int a, const struct iovec * v, int v_len);
+ssize_t new_writev(int a, const struct iovec *v, int v_len) {
+    NSMutableString *string = [NSMutableString string];
+    for (int i = 0; i < v_len; i++) {
+        char *c = (char *)v[i].iov_base;
+        if (*c != '\n') {
+            [string appendString:[NSString stringWithCString:c encoding:NSUTF8StringEncoding]];
+        }
     }
+    ssize_t result = orig_writev(a, v, v_len);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[logInWindowManager share] addPrintWithMessage:string];
+    });
+    return result;
 }
 
 static void (*orig_NSLog)(NSString *format, ...);
@@ -27,6 +47,7 @@ void(new_NSLog)(NSString *format, ...) {
         va_end(args);
     }
 }
+
 void println(NSString *format, ...) {
     va_list args;
     if(format) {
@@ -35,6 +56,11 @@ void println(NSString *format, ...) {
         NSLog(@"%@", message);
         va_end(args);
     }
+}
+
+void rebindFunction() {
+    rebind_symbols((struct rebinding[1]){{"NSLog", new_NSLog, (void *)&orig_NSLog}}, 1);
+    rebind_symbols((struct rebinding[1]){{"writev", new_writev, (void *)&orig_writev}}, 1);
 }
 
 @interface LogTextView : UITextView
@@ -88,7 +114,7 @@ void println(NSString *format, ...) {
     dispatch_once(&onceToken, ^{
         instance = [[logInWindowManager alloc] init];
         instance.window = [[OutPutWindow alloc] initWithFrame:CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 20)];
-        rebind_symbols((struct rebinding[1]){{"NSLog", new_NSLog, (void *)&orig_NSLog}}, 1);
+        rebindFunction();
     });
     return instance;
 }
@@ -108,15 +134,17 @@ void println(NSString *format, ...) {
 }
 
 - (void)addPrintWithMessage:(NSString *)msg {
-    @synchronized (self) {
-        if (self.window.textView.text.length) {
-            self.window.textView.text = [NSString stringWithFormat:@"%@\n%@", self.window.textView.text, msg];
-            [self.window.textView scrollRangeToVisible:NSMakeRange((self.window.textView.text.length - 1), 1)];
-        } else {
-            self.window.textView.text = msg;
-            [self.window.textView scrollRangeToVisible:NSMakeRange(MAX((self.window.textView.text.length - 1), 0), msg.length ? 1 : 0)];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        @synchronized (self) {
+            if (self.window.textView.text.length) {
+                self.window.textView.text = [NSString stringWithFormat:@"%@\n%@", self.window.textView.text, msg];
+                [self.window.textView scrollRangeToVisible:NSMakeRange((self.window.textView.text.length - 1), 1)];
+            } else {
+                self.window.textView.text = msg;
+                [self.window.textView scrollRangeToVisible:NSMakeRange(MAX((self.window.textView.text.length - 1), 0), msg.length ? 1 : 0)];
+            }
         }
-    }
+    });
 }
 
 
