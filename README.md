@@ -6,7 +6,9 @@
 
 # Usage
 - 在合适的地方调用: 
-	logInWindow(YES);
+`` logInWindow(YES);``
 - log方法请直接或间接使用NSLog或println:
- 	NSLog("%@", message);
- 	println("%@", message);
+``
+NSLog("%@", message);
+println("%@", message);
+``
