@@ -14,7 +14,7 @@
  log方法请直接或间接使用NSLog或println:
  
 
-`` NSLog("%@", message);
+`` NSLog("%@", message);``
 
 
-println("%@", message); ``
+``println("%@", message); ``
