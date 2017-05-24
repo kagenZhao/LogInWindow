@@ -12,9 +12,9 @@
 		2294D07B67FDB6E8257489BCF422F112 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		22A728B5DB63E9FFBE8710D687D42CB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		2FF64326C0CF91380C455BF8AA0FE7F0 /* fishhook-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D799DB64DF99E3932D406A50E272D90B /* fishhook-dummy.m */; };
-		3F1413E82F32AD355F0E5268D5B91490 /* LogInWindow-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 91022D256B42398DD4D10F852184F11D /* LogInWindow-dummy.m */; };
-		64981AC7CB8D97082642B9B7F84D5276 /* LogInWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BACFD7A6DE39EB610E948457CA2CAB /* LogInWindow.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		4781F08E8CD79FC86D40C7BBCC71EB2B /* LogInWindow-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 91022D256B42398DD4D10F852184F11D /* LogInWindow-dummy.m */; };
 		65B9DBA67246AFE68AF9704A305B56A8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		94C2A77C91614E9C332AEFED2BCE2C06 /* LogInWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BACFD7A6DE39EB610E948457CA2CAB /* LogInWindow.m */; };
 		D55BD33B1A5EC96E8C3806B3C307162F /* fishhook.h in Headers */ = {isa = PBXBuildFile; fileRef = AE802B29E42E121DA3237AF33A329BC6 /* fishhook.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F4F699FEE32A9E3A9A156554B51D6BD1 /* Pods-Sample-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C239D2AB0F1E99DF230A75B9355D0C19 /* Pods-Sample-dummy.m */; };
 /* End PBXBuildFile section */
@@ -287,7 +287,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 50E401E40F99802C429F21D6B411E47C /* Build configuration list for PBXNativeTarget "LogInWindow" */;
 			buildPhases = (
-				213D80623499240F00B99C9598ECF1D7 /* Sources */,
+				7D585A76631303EB952248BB6DAEEE80 /* Sources */,
 				EB95ED67CFAC1769E9E7A88CDCF0A169 /* Frameworks */,
 				5FAB506029E7148B7A026A65B241A559 /* Headers */,
 			);
@@ -330,12 +330,12 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		213D80623499240F00B99C9598ECF1D7 /* Sources */ = {
+		7D585A76631303EB952248BB6DAEEE80 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F1413E82F32AD355F0E5268D5B91490 /* LogInWindow-dummy.m in Sources */,
-				64981AC7CB8D97082642B9B7F84D5276 /* LogInWindow.m in Sources */,
+				4781F08E8CD79FC86D40C7BBCC71EB2B /* LogInWindow-dummy.m in Sources */,
+				94C2A77C91614E9C332AEFED2BCE2C06 /* LogInWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,7 +380,76 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		163D87BE96A63549B0EACF1CC31A2E90 /* Debug */ = {
+		20F045919B0A2D00AE95C46436623FBF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BCE314DFFE8002247CF0A7C3491871A /* fishhook.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/fishhook/fishhook-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		4B7CC3250CC24DD31359C9E305399287 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F47A7C771AD1E148ADC0A4AA294171BD /* Pods-Sample.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		5A6E1467332F4A4078B864D7EF442D72 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BCE314DFFE8002247CF0A7C3491871A /* fishhook.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/fishhook/fishhook-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		8B16B17393C067E32CCA6BFB6CB86B2B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -420,7 +489,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
@@ -428,9 +497,9 @@
 			};
 			name = Debug;
 		};
-		20F045919B0A2D00AE95C46436623FBF /* Release */ = {
+		964D4CBEAD5050D5972BA7ECF196E115 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7BCE314DFFE8002247CF0A7C3491871A /* fishhook.xcconfig */;
+			baseConfigurationReference = 844DD3FE88AE78CBD12727367A5ECE13 /* Pods-Sample.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -438,66 +507,20 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/fishhook/fishhook-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				MACH_O_TYPE = staticlib;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
-		5A6E1467332F4A4078B864D7EF442D72 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7BCE314DFFE8002247CF0A7C3491871A /* fishhook.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/fishhook/fishhook-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		5A979499FCB4AAF8D13FAF36E2E4AEE6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7848484172167C516F07C271A9154797 /* LogInWindow.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/LogInWindow/LogInWindow-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		707B86CFB21B645E37109F39754D4051 /* Release */ = {
+		A809BE8D78489167E81F4DC31B6EED6D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -533,7 +556,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
@@ -541,7 +564,30 @@
 			};
 			name = Release;
 		};
-		80E0181EFA67A0CA5615F4B4DB37B863 /* Debug */ = {
+		B24ED1BE1CD311170BAFF9ADE396D760 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7848484172167C516F07C271A9154797 /* LogInWindow.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/LogInWindow/LogInWindow-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		B82E43DDE11307B522CF8D4C1698CDAD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7848484172167C516F07C271A9154797 /* LogInWindow.xcconfig */;
 			buildSettings = {
@@ -552,7 +598,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/LogInWindow/LogInWindow-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -564,60 +610,14 @@
 			};
 			name = Debug;
 		};
-		90755D26806BF3FEAB47DC90E4296E0E /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 844DD3FE88AE78CBD12727367A5ECE13 /* Pods-Sample.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				MACH_O_TYPE = staticlib;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		C2FA07A3A5BFF2316F74A62E6934EEB7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F47A7C771AD1E148ADC0A4AA294171BD /* Pods-Sample.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				MACH_O_TYPE = staticlib;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				163D87BE96A63549B0EACF1CC31A2E90 /* Debug */,
-				707B86CFB21B645E37109F39754D4051 /* Release */,
+				8B16B17393C067E32CCA6BFB6CB86B2B /* Debug */,
+				A809BE8D78489167E81F4DC31B6EED6D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -625,8 +625,8 @@
 		50E401E40F99802C429F21D6B411E47C /* Build configuration list for PBXNativeTarget "LogInWindow" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				80E0181EFA67A0CA5615F4B4DB37B863 /* Debug */,
-				5A979499FCB4AAF8D13FAF36E2E4AEE6 /* Release */,
+				B82E43DDE11307B522CF8D4C1698CDAD /* Debug */,
+				B24ED1BE1CD311170BAFF9ADE396D760 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -634,8 +634,8 @@
 		79D276C5576CFF11D9B7847310155477 /* Build configuration list for PBXNativeTarget "Pods-Sample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C2FA07A3A5BFF2316F74A62E6934EEB7 /* Debug */,
-				90755D26806BF3FEAB47DC90E4296E0E /* Release */,
+				4B7CC3250CC24DD31359C9E305399287 /* Debug */,
+				964D4CBEAD5050D5972BA7ECF196E115 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

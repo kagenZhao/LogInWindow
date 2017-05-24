@@ -27,10 +27,11 @@ Pod::Spec.new do |s|
                     SOFTWARE.
                  LICENSE
   }
+  s.ios.deployment_target = '6.0'
   s.author       = { "kagen" => "1149467687@qq.com" }
   s.source       = { :git => "https://github.com/kagenZhao/LogInWindow.git", :tag => s.version }
   s.source_files  = "Sources/*.{h,m}"
-  s.dependency "fishhook"
+  s.dependency 'fishhook'
 
 
 end
