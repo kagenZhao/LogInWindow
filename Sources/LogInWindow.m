@@ -21,21 +21,20 @@ void logInWindow(bool flag) {
 }
 
 // 这两个方法是 swift 的print调用的
-static char __chineseChar[999999];
+static char *__chineseChar = {0};
 static int __buffIdx = 0;
-static NSString *token = @"token";
-
+static NSString *__syncToken = @"token";
 static size_t (*orig_fwrite)(const void * __restrict __ptr, size_t __size, size_t __nitems, FILE * __restrict __stream);
 size_t new_fwrite(const void * __restrict __ptr, size_t __size, size_t __nitems, FILE * __restrict __stream) {
     
     char *str = (char *)__ptr;
     __block NSString *s = [NSString stringWithCString:str encoding:NSUTF8StringEncoding];
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (str[0] == '\n' && __chineseChar[0] != '\0') {
-            @synchronized (token) {
+        @synchronized (__syncToken) {
+            if (str[0] == '\n' && __chineseChar[0] != '\0') {
                 s = [[NSString stringWithCString:__chineseChar encoding:NSUTF8StringEncoding] stringByAppendingString:s];
-                __chineseChar[0] = '\0';
                 __buffIdx = 0;
+                __chineseChar = calloc(1, sizeof(char));
             }
         }
         [[logInWindowManager share] addPrintWithMessage:s needReturn:false];
@@ -45,9 +44,10 @@ size_t new_fwrite(const void * __restrict __ptr, size_t __size, size_t __nitems,
 
 static int	(*orin___swbuf)(int, FILE *);
 int	new___swbuf(int c, FILE *p) {
-    @synchronized (token) {
+    @synchronized (__syncToken) {
+        __chineseChar = realloc(__chineseChar, sizeof(char) * (__buffIdx + 2));
         __chineseChar[__buffIdx] = (char)c;
-        __chineseChar[__buffIdx+1] = '\0';
+        __chineseChar[__buffIdx + 1] = '\0';
         __buffIdx++;
     }
     return orin___swbuf(c, p);
@@ -92,9 +92,9 @@ void println(NSString *format, ...) {
 
 void rebindFunction() {
     rebind_symbols((struct rebinding[1]){{"NSLog", new_NSLog, (void *)&orig_NSLog}}, 1);
-//    rebind_symbols((struct rebinding[1]){{"writev", new_writev, (void *)&orig_writev}}, 1);
-//    rebind_symbols((struct rebinding[1]){{"fwrite", new_fwrite, (void *)&orig_fwrite}}, 1);
-//    rebind_symbols((struct rebinding[1]){{"__swbuf", new___swbuf, (void *)&orin___swbuf}}, 1);
+    rebind_symbols((struct rebinding[1]){{"writev", new_writev, (void *)&orig_writev}}, 1);
+    rebind_symbols((struct rebinding[1]){{"fwrite", new_fwrite, (void *)&orig_fwrite}}, 1);
+    rebind_symbols((struct rebinding[1]){{"__swbuf", new___swbuf, (void *)&orin___swbuf}}, 1);
 }
 
 @interface LogTextView : UITextView

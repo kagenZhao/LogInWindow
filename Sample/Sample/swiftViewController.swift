@@ -15,13 +15,13 @@ class swiftViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        logInWindow(true)
-//        p()
+        p()
     }
 
     func p() {
         t.scheduleRepeating(deadline: .now(), interval: DispatchTimeInterval.seconds(1), leeway: DispatchTimeInterval.microseconds(1))
         t.setEventHandler {
-            print("北京欢迎你 aaaaasdfsdfg *^(*&R()8y23rkvwd")
+            print("asdeasdve北京欢迎你aaaaasdfsdfg欢迎你*^(*&R()8y23rkvwd")
         }
         t.resume()
     }
