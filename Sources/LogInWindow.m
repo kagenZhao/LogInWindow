@@ -6,7 +6,7 @@
 //
 
 #import "LogInWindow.h"
-#import <fishhook/fishhook.h>
+#import "fishhook.h"
 
 @interface LogTextView : UITextView
 @end
