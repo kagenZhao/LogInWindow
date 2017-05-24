@@ -1,0 +1,655 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		06A7D5D64FC55183135C54EC68A642FC /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = E690B6556BFA06BE9400CA900A7BD249 /* fishhook.c */; };
+		1BB131D30763232CD383E1360C9C4AD7 /* LogInWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 9247E8119A968E0475EAA829E8807F1C /* LogInWindow.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2294D07B67FDB6E8257489BCF422F112 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		22A728B5DB63E9FFBE8710D687D42CB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		2FF64326C0CF91380C455BF8AA0FE7F0 /* fishhook-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D799DB64DF99E3932D406A50E272D90B /* fishhook-dummy.m */; };
+		3F1413E82F32AD355F0E5268D5B91490 /* LogInWindow-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 91022D256B42398DD4D10F852184F11D /* LogInWindow-dummy.m */; };
+		64981AC7CB8D97082642B9B7F84D5276 /* LogInWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BACFD7A6DE39EB610E948457CA2CAB /* LogInWindow.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		65B9DBA67246AFE68AF9704A305B56A8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		D55BD33B1A5EC96E8C3806B3C307162F /* fishhook.h in Headers */ = {isa = PBXBuildFile; fileRef = AE802B29E42E121DA3237AF33A329BC6 /* fishhook.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F4F699FEE32A9E3A9A156554B51D6BD1 /* Pods-Sample-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C239D2AB0F1E99DF230A75B9355D0C19 /* Pods-Sample-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2C36813F82951011028518D62EE7BB61 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE5C9907E341148BF7123575529FD7E4;
+			remoteInfo = LogInWindow;
+		};
+		52B61682B8708C921513BEBDF61B1D8E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E04AE33FC92C7A0FD0B28FD48F050932;
+			remoteInfo = fishhook;
+		};
+		6E9B2F6FF0E5C1D5A408F3D37F5E7378 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E04AE33FC92C7A0FD0B28FD48F050932;
+			remoteInfo = fishhook;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3C6598D35880AC6EEF4996CBF37733D2 /* Pods-Sample-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Sample-acknowledgements.plist"; sourceTree = "<group>"; };
+		41BACFD7A6DE39EB610E948457CA2CAB /* LogInWindow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = LogInWindow.m; sourceTree = "<group>"; };
+		49606C9E3DFCC3507F532B87C758838A /* fishhook-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "fishhook-prefix.pch"; sourceTree = "<group>"; };
+		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		6A5BF401D993AF79461715E396F221CC /* libLogInWindow.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libLogInWindow.a; path = libLogInWindow.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F31CE8AA96B2E079FAEE8AC6E224974 /* Pods-Sample-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Sample-frameworks.sh"; sourceTree = "<group>"; };
+		7848484172167C516F07C271A9154797 /* LogInWindow.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LogInWindow.xcconfig; sourceTree = "<group>"; };
+		7BCE314DFFE8002247CF0A7C3491871A /* fishhook.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = fishhook.xcconfig; sourceTree = "<group>"; };
+		844DD3FE88AE78CBD12727367A5ECE13 /* Pods-Sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Sample.release.xcconfig"; sourceTree = "<group>"; };
+		91022D256B42398DD4D10F852184F11D /* LogInWindow-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LogInWindow-dummy.m"; sourceTree = "<group>"; };
+		9247E8119A968E0475EAA829E8807F1C /* LogInWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = LogInWindow.h; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		AE802B29E42E121DA3237AF33A329BC6 /* fishhook.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = fishhook.h; sourceTree = "<group>"; };
+		C239D2AB0F1E99DF230A75B9355D0C19 /* Pods-Sample-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Sample-dummy.m"; sourceTree = "<group>"; };
+		C376AA6F601A2065B416C307DBE41863 /* LogInWindow-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LogInWindow-prefix.pch"; sourceTree = "<group>"; };
+		CF452B50E087E1BA657975AD834C4B0C /* Pods-Sample-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Sample-resources.sh"; sourceTree = "<group>"; };
+		D166388A5B0199DF7FB6F9FF8AEC071C /* libPods-Sample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-Sample.a"; path = "libPods-Sample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D799DB64DF99E3932D406A50E272D90B /* fishhook-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "fishhook-dummy.m"; sourceTree = "<group>"; };
+		E690B6556BFA06BE9400CA900A7BD249 /* fishhook.c */ = {isa = PBXFileReference; includeInIndex = 1; path = fishhook.c; sourceTree = "<group>"; };
+		F12021F212ACEF0ECAE8E6680D1FEEC6 /* libfishhook.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libfishhook.a; path = libfishhook.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F47A7C771AD1E148ADC0A4AA294171BD /* Pods-Sample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Sample.debug.xcconfig"; sourceTree = "<group>"; };
+		FAFD241BD47D50C23B9F46DD9655864A /* Pods-Sample-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Sample-acknowledgements.markdown"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8710D92CB81B104BFE579DFBFBA5EE48 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2294D07B67FDB6E8257489BCF422F112 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9721035FFA72D25303E35C0C9F994001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65B9DBA67246AFE68AF9704A305B56A8 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB95ED67CFAC1769E9E7A88CDCF0A169 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22A728B5DB63E9FFBE8710D687D42CB8 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		049189D0FAB128F7A9386955DC3E386E /* LogInWindow */ = {
+			isa = PBXGroup;
+			children = (
+				63D550D68DD8A68442B4DE3D7E3C0F61 /* Sources */,
+				7E55DEDCE8266C70BCE12803C9604C6A /* Support Files */,
+			);
+			name = LogInWindow;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		414F53FD2C1A446FE4FC1AE7CAA6BD10 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				7BCE314DFFE8002247CF0A7C3491871A /* fishhook.xcconfig */,
+				D799DB64DF99E3932D406A50E272D90B /* fishhook-dummy.m */,
+				49606C9E3DFCC3507F532B87C758838A /* fishhook-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/fishhook";
+			sourceTree = "<group>";
+		};
+		63D550D68DD8A68442B4DE3D7E3C0F61 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				9247E8119A968E0475EAA829E8807F1C /* LogInWindow.h */,
+				41BACFD7A6DE39EB610E948457CA2CAB /* LogInWindow.m */,
+			);
+			name = Sources;
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		6B37AE976352C503EB4442A8607863A8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F12021F212ACEF0ECAE8E6680D1FEEC6 /* libfishhook.a */,
+				6A5BF401D993AF79461715E396F221CC /* libLogInWindow.a */,
+				D166388A5B0199DF7FB6F9FF8AEC071C /* libPods-Sample.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		736534D55C0690D4DF747826D97D64BD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D6B059038B8BD3B1DF390BEB5898EA1B /* fishhook */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7BC57114921E852DD6A392443FCB1F0C /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				049189D0FAB128F7A9386955DC3E386E /* LogInWindow */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				7BC57114921E852DD6A392443FCB1F0C /* Development Pods */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				736534D55C0690D4DF747826D97D64BD /* Pods */,
+				6B37AE976352C503EB4442A8607863A8 /* Products */,
+				BC55BC57FF7D44184EA25BD902EF1FB3 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		7E55DEDCE8266C70BCE12803C9604C6A /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				7848484172167C516F07C271A9154797 /* LogInWindow.xcconfig */,
+				91022D256B42398DD4D10F852184F11D /* LogInWindow-dummy.m */,
+				C376AA6F601A2065B416C307DBE41863 /* LogInWindow-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "Sample/Pods/Target Support Files/LogInWindow";
+			sourceTree = "<group>";
+		};
+		92EFB1018A15B1508996F23864DDD858 /* Pods-Sample */ = {
+			isa = PBXGroup;
+			children = (
+				FAFD241BD47D50C23B9F46DD9655864A /* Pods-Sample-acknowledgements.markdown */,
+				3C6598D35880AC6EEF4996CBF37733D2 /* Pods-Sample-acknowledgements.plist */,
+				C239D2AB0F1E99DF230A75B9355D0C19 /* Pods-Sample-dummy.m */,
+				6F31CE8AA96B2E079FAEE8AC6E224974 /* Pods-Sample-frameworks.sh */,
+				CF452B50E087E1BA657975AD834C4B0C /* Pods-Sample-resources.sh */,
+				F47A7C771AD1E148ADC0A4AA294171BD /* Pods-Sample.debug.xcconfig */,
+				844DD3FE88AE78CBD12727367A5ECE13 /* Pods-Sample.release.xcconfig */,
+			);
+			name = "Pods-Sample";
+			path = "Target Support Files/Pods-Sample";
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BC55BC57FF7D44184EA25BD902EF1FB3 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				92EFB1018A15B1508996F23864DDD858 /* Pods-Sample */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		D6B059038B8BD3B1DF390BEB5898EA1B /* fishhook */ = {
+			isa = PBXGroup;
+			children = (
+				E690B6556BFA06BE9400CA900A7BD249 /* fishhook.c */,
+				AE802B29E42E121DA3237AF33A329BC6 /* fishhook.h */,
+				414F53FD2C1A446FE4FC1AE7CAA6BD10 /* Support Files */,
+			);
+			name = fishhook;
+			path = fishhook;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		5FAB506029E7148B7A026A65B241A559 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BB131D30763232CD383E1360C9C4AD7 /* LogInWindow.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F2AA95C5062E453B9EFAED224F140F1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D55BD33B1A5EC96E8C3806B3C307162F /* fishhook.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		7BE6725E5FF4E81856FCD10D8C410FC5 /* Pods-Sample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 79D276C5576CFF11D9B7847310155477 /* Build configuration list for PBXNativeTarget "Pods-Sample" */;
+			buildPhases = (
+				A634D84F0CD63F4C9DD8032A316BABB6 /* Sources */,
+				9721035FFA72D25303E35C0C9F994001 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				083A8B2432CD6D5BDA210BE4BE584378 /* PBXTargetDependency */,
+				9FC0B449CE58046D51E0BB7ED2E30AAA /* PBXTargetDependency */,
+			);
+			name = "Pods-Sample";
+			productName = "Pods-Sample";
+			productReference = D166388A5B0199DF7FB6F9FF8AEC071C /* libPods-Sample.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		E04AE33FC92C7A0FD0B28FD48F050932 /* fishhook */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F02D0A4F331D910FEF28484C28D851ED /* Build configuration list for PBXNativeTarget "fishhook" */;
+			buildPhases = (
+				988DD5B76FBDF7233294D91F5FFE3025 /* Sources */,
+				8710D92CB81B104BFE579DFBFBA5EE48 /* Frameworks */,
+				7F2AA95C5062E453B9EFAED224F140F1 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = fishhook;
+			productName = fishhook;
+			productReference = F12021F212ACEF0ECAE8E6680D1FEEC6 /* libfishhook.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		FE5C9907E341148BF7123575529FD7E4 /* LogInWindow */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 50E401E40F99802C429F21D6B411E47C /* Build configuration list for PBXNativeTarget "LogInWindow" */;
+			buildPhases = (
+				213D80623499240F00B99C9598ECF1D7 /* Sources */,
+				EB95ED67CFAC1769E9E7A88CDCF0A169 /* Frameworks */,
+				5FAB506029E7148B7A026A65B241A559 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D3ED0C0ADC4052B17CFEA9FF97192C0D /* PBXTargetDependency */,
+			);
+			name = LogInWindow;
+			productName = LogInWindow;
+			productReference = 6A5BF401D993AF79461715E396F221CC /* libLogInWindow.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 6B37AE976352C503EB4442A8607863A8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E04AE33FC92C7A0FD0B28FD48F050932 /* fishhook */,
+				FE5C9907E341148BF7123575529FD7E4 /* LogInWindow */,
+				7BE6725E5FF4E81856FCD10D8C410FC5 /* Pods-Sample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		213D80623499240F00B99C9598ECF1D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F1413E82F32AD355F0E5268D5B91490 /* LogInWindow-dummy.m in Sources */,
+				64981AC7CB8D97082642B9B7F84D5276 /* LogInWindow.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		988DD5B76FBDF7233294D91F5FFE3025 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FF64326C0CF91380C455BF8AA0FE7F0 /* fishhook-dummy.m in Sources */,
+				06A7D5D64FC55183135C54EC68A642FC /* fishhook.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A634D84F0CD63F4C9DD8032A316BABB6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4F699FEE32A9E3A9A156554B51D6BD1 /* Pods-Sample-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		083A8B2432CD6D5BDA210BE4BE584378 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LogInWindow;
+			target = FE5C9907E341148BF7123575529FD7E4 /* LogInWindow */;
+			targetProxy = 2C36813F82951011028518D62EE7BB61 /* PBXContainerItemProxy */;
+		};
+		9FC0B449CE58046D51E0BB7ED2E30AAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = fishhook;
+			target = E04AE33FC92C7A0FD0B28FD48F050932 /* fishhook */;
+			targetProxy = 6E9B2F6FF0E5C1D5A408F3D37F5E7378 /* PBXContainerItemProxy */;
+		};
+		D3ED0C0ADC4052B17CFEA9FF97192C0D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = fishhook;
+			target = E04AE33FC92C7A0FD0B28FD48F050932 /* fishhook */;
+			targetProxy = 52B61682B8708C921513BEBDF61B1D8E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		163D87BE96A63549B0EACF1CC31A2E90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		20F045919B0A2D00AE95C46436623FBF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BCE314DFFE8002247CF0A7C3491871A /* fishhook.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/fishhook/fishhook-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		5A6E1467332F4A4078B864D7EF442D72 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BCE314DFFE8002247CF0A7C3491871A /* fishhook.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/fishhook/fishhook-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		5A979499FCB4AAF8D13FAF36E2E4AEE6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7848484172167C516F07C271A9154797 /* LogInWindow.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/LogInWindow/LogInWindow-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		707B86CFB21B645E37109F39754D4051 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		80E0181EFA67A0CA5615F4B4DB37B863 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7848484172167C516F07C271A9154797 /* LogInWindow.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/LogInWindow/LogInWindow-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		90755D26806BF3FEAB47DC90E4296E0E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 844DD3FE88AE78CBD12727367A5ECE13 /* Pods-Sample.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		C2FA07A3A5BFF2316F74A62E6934EEB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F47A7C771AD1E148ADC0A4AA294171BD /* Pods-Sample.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				163D87BE96A63549B0EACF1CC31A2E90 /* Debug */,
+				707B86CFB21B645E37109F39754D4051 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		50E401E40F99802C429F21D6B411E47C /* Build configuration list for PBXNativeTarget "LogInWindow" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80E0181EFA67A0CA5615F4B4DB37B863 /* Debug */,
+				5A979499FCB4AAF8D13FAF36E2E4AEE6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		79D276C5576CFF11D9B7847310155477 /* Build configuration list for PBXNativeTarget "Pods-Sample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C2FA07A3A5BFF2316F74A62E6934EEB7 /* Debug */,
+				90755D26806BF3FEAB47DC90E4296E0E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F02D0A4F331D910FEF28484C28D851ED /* Build configuration list for PBXNativeTarget "fishhook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A6E1467332F4A4078B864D7EF442D72 /* Debug */,
+				20F045919B0A2D00AE95C46436623FBF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
