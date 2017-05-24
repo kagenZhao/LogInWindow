@@ -7,13 +7,15 @@
 //
 
 import UIKit
+import LogInWindow
 
 class swiftViewController: UIViewController {
     let t = DispatchSource.makeTimerSource();
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        p()
+//        logInWindow(true)
+//        p()
     }
 
     func p() {

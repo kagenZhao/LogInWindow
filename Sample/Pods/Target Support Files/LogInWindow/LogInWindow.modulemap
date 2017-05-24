@@ -1,0 +1,6 @@
+framework module LogInWindow {
+  umbrella header "LogInWindow-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -4,7 +4,7 @@ source 'git@gitlab.yintech.net:dxios/dxspecs.git'
 source 'git@gitlab.baidao.com:dxios/dxspecs.git'
 
 target 'Sample' do
-  # use_frameworks!
+  use_frameworks!
   pod 'LogInWindow', :path => '../../LogInWindow'
   pod 'EPMLogger'
 end

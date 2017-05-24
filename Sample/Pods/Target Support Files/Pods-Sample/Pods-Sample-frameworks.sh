@@ -87,6 +87,21 @@ strip_invalid_archs() {
   fi
 }
 
+
+if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/CocoaLumberjack/CocoaLumberjack.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/EPMLogger/EPMLogger.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/GCDWebServer/GCDWebServer.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/LogInWindow/LogInWindow.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/fishhook/fishhook.framework"
+fi
+if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/CocoaLumberjack/CocoaLumberjack.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/EPMLogger/EPMLogger.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/GCDWebServer/GCDWebServer.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/LogInWindow/LogInWindow.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/fishhook/fishhook.framework"
+fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait
 fi

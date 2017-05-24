@@ -12,12 +12,11 @@ FOUNDATION_EXPORT void logInWindow(bool flag);
 FOUNDATION_EXPORT void println(NSString *format, ...);
 
 /** 使log信息显示在屏幕上
- 
- hook了NSLog方法
  当调用NSLog方法时(或手动调用println方法)会显示在window上, 同时控制台也会输出
- 
- 增加: hook writev方法, 用来兼容DDTTYLogger在控制台的输出;
- 增加: hook fwrite 和 __swbuf方法 用来兼容swift
+
+ 0.0.1: hook了NSLog方法
+ 0.0.2增加: hook writev方法, 用来兼容DDTTYLogger在控制台的输出;
+ 0.0.3增加: hook fwrite 和 __swbuf方法 用来兼容swift
  
  TODO: 增加滚动和隐藏
  */
@@ -33,5 +32,4 @@ FOUNDATION_EXPORT void println(NSString *format, ...);
 - (void)setupInWindow;
 - (void)hideFromWindow;
 - (void)addPrintWithMessage:(NSString *)msg needReturn:(BOOL)needReturn;
-//- (void)addPrintWithMessage:(NSString *)msg;
 @end

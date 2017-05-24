@@ -1,0 +1,6 @@
+framework module EPMLogger {
+  umbrella header "EPMLogger-umbrella.h"
+
+  export *
+  module * { export * }
+}
