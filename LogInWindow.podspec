@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
 
 
   s.name         = "LogInWindow"
-  s.version      = "0.0.4"
+  s.version      = "0.0.5"
   s.summary      = "Show log message in APP window"
   s.homepage     = "https://github.com/kagenZhao"
   s.license = { :type => 'MIT', :text => <<-LICENSE
