@@ -14,7 +14,7 @@ PODS:
   - GCDWebServer (3.3.3):
     - GCDWebServer/Core (= 3.3.3)
   - GCDWebServer/Core (3.3.3)
-  - LogInWindow (0.0.3):
+  - LogInWindow (0.0.4):
     - fishhook
 
 DEPENDENCIES:
@@ -30,7 +30,7 @@ SPEC CHECKSUMS:
   EPMLogger: 3cef0e3f7c125a1d84ad782a8ebcb890e0cb7d4a
   fishhook: ea19933abfe8f2f52c55fd8b6e2718467d3ebc89
   GCDWebServer: 1c39a1f0763e4eb492bee021e4270fce097d3555
-  LogInWindow: 645ca2b09c48fb22dd9d98e89beb6e5e63a97b9f
+  LogInWindow: 9b9327bdbada505619d3a4aad0f73dd3e0f096b2
 
 PODFILE CHECKSUM: 2616dff7d1ace30ac49761ca9d73cd0cb8aa3955
 

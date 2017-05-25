@@ -17,6 +17,8 @@ FOUNDATION_EXPORT void println(NSString *format, ...);
  0.0.1: hook了NSLog方法
  0.0.2增加: hook writev方法, 用来兼容DDTTYLogger在控制台的输出;
  0.0.3增加: hook fwrite 和 __swbuf方法 用来兼容swift
+ 0.0.4: 优化逻辑
+ 0.0.5: fix NSLog和writev打印重复的问题
  
  TODO: 增加滚动和隐藏
  */
