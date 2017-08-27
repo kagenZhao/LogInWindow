@@ -2,7 +2,7 @@
 - 可以在window上输出log信息
 
 # Installation
-    pod 'MQPhotoBrowser'
+    ```pod 'LogInWindow'```
 
 # Usage
  在合适的地方调用: 
@@ -11,10 +11,9 @@
 `` logInWindow(YES);``
 
 
- log方法请直接或间接使用NSLog或println:
+ log方法可使用
+ 1. NSLog
+ 2. swift的print
+ 3. DDLog中的控制太打印
+ 2. println
  
-
-`` NSLog("%@", message);``
-
-
-``println("%@", message); ``
