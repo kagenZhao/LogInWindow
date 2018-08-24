@@ -14,14 +14,15 @@ class swiftViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        logInWindow(true)
+        logInWindow(true)
         p()
     }
 
     func p() {
-        t.scheduleRepeating(deadline: .now(), interval: DispatchTimeInterval.seconds(1), leeway: DispatchTimeInterval.microseconds(1))
+        t.schedule(deadline: .now(), repeating: DispatchTimeInterval.seconds(1), leeway: DispatchTimeInterval.microseconds(1))
         t.setEventHandler {
-            print("asdeasdve北京欢迎你aaaaasdfsdfg欢迎你*^(*&R()8y23rkvwd")
+            print("asdeasdve北京欢迎你aaaaasdfsdfg欢迎你*^(*&R()8y23rkvwdåß∂çåß∂ƒœ∑¥øµ≤åß∫∂çø…ƒπœ∑¬µ√÷“æ˙¡ª•§")
+            print("asdfasdf".cString(using: String.Encoding.ascii))
         }
         t.resume()
     }
