@@ -21,6 +21,7 @@ class swiftViewController: UIViewController {
     func p() {
         t.schedule(deadline: .now(), repeating: DispatchTimeInterval.seconds(1), leeway: DispatchTimeInterval.microseconds(1))
         t.setEventHandler {
+            print("asdeasdve北京欢迎你aaaaasdfsdfg欢迎你*^(*&R()8y23rkvwd예사소리/평음い　うけ か　さ た　 に ぬ の ま み め も り る")
             print("asdeasdve北京欢迎你aaaaasdfsdfg欢迎你*^(*&R()8y23rkvwdåß∂çåß∂ƒœ∑¥øµ≤åß∫∂çø…ƒπœ∑¬µ√÷“æ˙¡ª•§")
             print("asdfasdf".cString(using: String.Encoding.ascii))
         }

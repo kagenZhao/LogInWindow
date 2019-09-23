@@ -16,6 +16,7 @@
 
 @interface OutPutWindow : UIWindow
 @property (nonatomic, strong) LogTextView *textView;
+@property (nonatomic, strong) UIButton *cleanButton;
 @end
 
 @interface logInWindowManager()
@@ -26,32 +27,47 @@
 @property (nonatomic, strong) OutPutWindow * window;
 @property (nonatomic, copy, readwrite) NSString *printString;
 - (void)addPrintWithMessage:(NSString *)msg needReturn:(BOOL)needReturn;
++ (instancetype)share;
+- (void)setupInWindow;
+- (void)hideFromWindow;
 @end
 
+
+
+void logInWindow(bool flag) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (flag) {
+            [[logInWindowManager share] setupInWindow];
+        } else {
+            [[logInWindowManager share] hideFromWindow];
+        }
+    });
+}
 
 // 这两个方法是 swift 的print调用的
 // 修复swift4
 static char *__chineseChar = {0};
 static int __buffIdx = 0;
 static NSString *__syncToken = @"token";
-
 static size_t (*orig_fwrite)(const void * __restrict, size_t, size_t, FILE * __restrict);
-static size_t new_fwrite(const void * __restrict ptr, size_t size, size_t nitems, FILE * __restrict stream) {
-    @synchronized (__syncToken) {
-        char *str = (char *)ptr;
-        NSString *s = [NSString stringWithCString:str encoding:NSString.defaultCStringEncoding];
-        if (s.length >= size) {
-            s = [s substringToIndex:size];
+size_t new_fwrite(const void * __restrict ptr, size_t size, size_t nitems, FILE * __restrict stream) {
+    
+    char *str = (char *)ptr;
+    __block NSString *s = [NSString stringWithCString:str encoding:NSUTF8StringEncoding];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        @synchronized (__syncToken) {
+            if (__chineseChar != NULL) {
+                if (str[0] == '\n' && __chineseChar[0] != '\0') {
+                    s = [[NSString stringWithCString:__chineseChar encoding:NSUTF8StringEncoding] stringByAppendingString:s];
+                    __buffIdx = 0;
+                    __chineseChar = calloc(1, sizeof(char));
+                }
+            } else {
+               
+            }
         }
-        NSString *s1 = @"";
-        if (__chineseChar != NULL) {
-            s1 = [NSString stringWithCString:__chineseChar encoding:NSUTF8StringEncoding];
-        }
-        __buffIdx = 0;
-        __chineseChar = calloc(1, sizeof(char));
-        NSString *output = s == nil ? (s1 == nil ? @"" : s1) : (s1 == nil ? @"" : [s1 stringByAppendingString:s]);
-        [[logInWindowManager share] addPrintWithMessage:output needReturn:false];
-    }
+        [[logInWindowManager share] addPrintWithMessage:s needReturn:false];
+    });
     return orig_fwrite(ptr, size, nitems, stream);
 }
 
@@ -67,7 +83,7 @@ static int new___swbuf(int c, FILE *p) {
 }
 
 // 发现新问题, 这个方法和NSLog重复了.. 所以把不hook NSLog了
-static ssize_t (*orig_writev)(int a, const struct iovec *, int);
+static ssize_t (*orig_writev)(int, const struct iovec *, int);
 static ssize_t new_writev(int a, const struct iovec *v, int v_len) {
     NSMutableString *string = [NSMutableString string];
     for (int i = 0; i < v_len; i++) {
@@ -104,7 +120,7 @@ static void rebindFunction() {
     if (self) {
         self.font = [UIFont systemFontOfSize:12];
         self.textColor = [UIColor greenColor];
-        self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor blackColor];
         self.scrollsToTop = false;
         self.editable = false;
         self.selectable = false;
@@ -123,6 +139,12 @@ static void rebindFunction() {
         //        self.userInteractionEnabled = NO;
         _textView = [[LogTextView alloc] initWithFrame:self.bounds];
         [self addSubview:_textView];
+        
+        _cleanButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        _cleanButton.hidden = true;
+        [_cleanButton setTitle:@"清空" forState:UIControlStateNormal];
+        [_cleanButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+        [self addSubview:_cleanButton];
     }
     return self;
 }
@@ -209,7 +231,10 @@ static BOOL __isShow = false;
         case UIGestureRecognizerStateChanged:
             if (isBegin) {
                 CGPoint oldCenter = self.window.center;
-                CGPoint newCenter = CGPointMake(oldCenter.x + [longP translationInView:self.window].x, oldCenter.y + [longP translationInView:self.window].y);
+                CGFloat newX = oldCenter.x + [longP translationInView:self.window].x;
+                CGFloat newY = oldCenter.y + [longP translationInView:self.window].y;
+                
+                CGPoint newCenter = CGPointMake(newX, newY);
                 [longP setTranslation:CGPointZero inView:self.window];
                 self.window.center = newCenter;
             }
@@ -229,13 +254,16 @@ static BOOL __isShow = false;
     if (ges.numberOfTapsRequired == 2) {
         if (!__isShow) {
             [UIView animateWithDuration:0.5 animations:^{
-                self.window.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 20);
-                self.window.textView.frame = self.window.bounds;
+                self.window.cleanButton.hidden = false;
+                self.window.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+                self.window.textView.frame = CGRectMake(0, 40, self.window.bounds.size.width, self.window.bounds.size.height - 40);
+                self.window.cleanButton.frame = CGRectMake(0, 0, self.window.bounds.size.width, 40);
             }];
             self.window.textView.userInteractionEnabled = true;
         } else {
             [UIView animateWithDuration:0.5 animations:^{
-                self.window.frame = CGRectMake(0, 20, 50, 50);
+                self.window.cleanButton.hidden = true;
+                self.window.frame = CGRectMake(0, 0, 50, 50);
                 self.window.textView.frame = self.window.bounds;
             }];
             self.window.textView.userInteractionEnabled = false;
@@ -305,13 +333,3 @@ static BOOL __isShow = false;
 //}
 
 @end
-
-void logInWindow(bool flag) {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (flag) {
-            [[logInWindowManager share] setupInWindow];
-        } else {
-            [[logInWindowManager share] hideFromWindow];
-        }
-    });
-}
