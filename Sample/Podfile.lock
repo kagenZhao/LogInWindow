@@ -1,10 +1,14 @@
 PODS:
   - fishhook (0.2)
-  - LogInWindow (0.0.5):
+  - LogInWindow (0.1.0):
     - fishhook
 
 DEPENDENCIES:
   - LogInWindow (from `../../LogInWindow`)
+
+SPEC REPOS:
+  trunk:
+    - fishhook
 
 EXTERNAL SOURCES:
   LogInWindow:
@@ -12,8 +16,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   fishhook: ea19933abfe8f2f52c55fd8b6e2718467d3ebc89
-  LogInWindow: 565c492b957be3ab1589531a31c0441c1d378224
+  LogInWindow: c2a8add88550a80eb7efebe879a673721914406f
 
-PODFILE CHECKSUM: 42af93a6fefa25e0bace169cba6a726583aa4631
+PODFILE CHECKSUM: 00d2c4d5792a65365e171140f71e81ba0706c165
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.10.0

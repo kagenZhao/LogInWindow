@@ -17,11 +17,8 @@ FOUNDATION_EXPORT void logInWindow(bool flag);
  0.0.3增加: hook fwrite 和 __swbuf方法 用来兼容swift
  0.0.4: 优化逻辑
  0.0.5: fix NSLog和writev打印重复的问题
- 
- TODO: 增加滚动和隐藏
+ 0.1.0: 适配Swift5.x
  */
 @interface logInWindowManager : NSObject
 @end
 
-
-FOUNDATION_EXPORT void logInWindow(bool flag);

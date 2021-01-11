@@ -20,10 +20,7 @@
 @end
 
 @interface logInWindowManager()
-
-@property (nonatomic, strong) dispatch_source_t sourt_t;
-
-
+@property (nonatomic, assign) CGRect preFrame;
 @property (nonatomic, strong) OutPutWindow * window;
 @property (nonatomic, copy, readwrite) NSString *printString;
 - (void)addPrintWithMessage:(NSString *)msg needReturn:(BOOL)needReturn;
@@ -31,7 +28,6 @@
 - (void)setupInWindow;
 - (void)hideFromWindow;
 @end
-
 
 
 void logInWindow(bool flag) {
@@ -44,47 +40,18 @@ void logInWindow(bool flag) {
     });
 }
 
-// 这两个方法是 swift 的print调用的
-// 修复swift4
-static char *__chineseChar = {0};
-static int __buffIdx = 0;
-static NSString *__syncToken = @"token";
+// swift5.x 只需要hook这一个方法即可
 static size_t (*orig_fwrite)(const void * __restrict, size_t, size_t, FILE * __restrict);
 size_t new_fwrite(const void * __restrict ptr, size_t size, size_t nitems, FILE * __restrict stream) {
-    
     char *str = (char *)ptr;
     __block NSString *s = [NSString stringWithCString:str encoding:NSUTF8StringEncoding];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        @synchronized (__syncToken) {
-            if (__chineseChar != NULL) {
-                if (str[0] == '\n' && __chineseChar[0] != '\0') {
-                    s = [[NSString stringWithCString:__chineseChar encoding:NSUTF8StringEncoding] stringByAppendingString:s];
-                    __buffIdx = 0;
-                    __chineseChar = calloc(1, sizeof(char));
-                }
-            } else {
-               
-            }
-        }
-        [[logInWindowManager share] addPrintWithMessage:s needReturn:false];
-    });
+    [[logInWindowManager share] addPrintWithMessage:s needReturn:false];
     return orig_fwrite(ptr, size, nitems, stream);
 }
 
-static int (*orin___swbuf)(int, FILE *);
-static int new___swbuf(int c, FILE *p) {
-    @synchronized (__syncToken) {
-        __chineseChar = realloc(__chineseChar, sizeof(char) * (__buffIdx + 2));
-        __chineseChar[__buffIdx] = (char)c;
-        __chineseChar[__buffIdx + 1] = '\0';
-        __buffIdx++;
-    }
-    return orin___swbuf(c, p);
-}
-
-// 发现新问题, 这个方法和NSLog重复了.. 所以把不hook NSLog了
-static ssize_t (*orig_writev)(int, const struct iovec *, int);
-static ssize_t new_writev(int a, const struct iovec *v, int v_len) {
+// 这个方法就是NSLog底层调用.. 所以把不hook NSLog了
+static ssize_t (*orig_writev)(int a, const struct iovec *, int);
+ssize_t new_writev(int a, const struct iovec *v, int v_len) {
     NSMutableString *string = [NSMutableString string];
     for (int i = 0; i < v_len; i++) {
         char *c = (char *)v[i].iov_base;
@@ -97,22 +64,10 @@ static ssize_t new_writev(int a, const struct iovec *v, int v_len) {
     return result;
 }
 
-static void rebindFunction() {
-    int error = 0;
-    error = rebind_symbols((struct rebinding[1]){{"writev", new_writev, (void *)&orig_writev}}, 1);
-    if (error < 0) {
-        NSLog(@"错误 writev");
-    }
-    error = rebind_symbols((struct rebinding[1]){{"fwrite", new_fwrite, (void *)&orig_fwrite}}, 1);
-    if (error < 0) {
-        NSLog(@"错误 fwrite");
-    }
-    error = rebind_symbols((struct rebinding[1]){{"__swbuf", new___swbuf, (void *)&orin___swbuf}}, 1);
-    if (error < 0) {
-        NSLog(@"错误 __swbuf");
-    }
+void rebindFunction() {
+    rebind_symbols((struct rebinding[1]){{"writev", new_writev, (void *)&orig_writev}}, 1);
+    rebind_symbols((struct rebinding[1]){{"fwrite", new_fwrite, (void *)&orig_fwrite}}, 1);
 }
-
 
 @implementation LogTextView
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -161,7 +116,8 @@ static void rebindFunction() {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [[logInWindowManager alloc] init];
-        instance.window = [[OutPutWindow alloc] initWithFrame:CGRectMake(0, 20, 50, 50)];
+        instance.preFrame = CGRectMake(0, 20, 50, 50);
+        instance.window = [[OutPutWindow alloc] initWithFrame:instance.preFrame];
         UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:instance action:@selector(doubleTapAction:)];
         doubleTap.numberOfTapsRequired = 2;
         [instance.window addGestureRecognizer:doubleTap];
@@ -237,6 +193,7 @@ static BOOL __isShow = false;
                 CGPoint newCenter = CGPointMake(newX, newY);
                 [longP setTranslation:CGPointZero inView:self.window];
                 self.window.center = newCenter;
+                self.preFrame = self.window.frame;
             }
             break;
         default:
@@ -263,7 +220,7 @@ static BOOL __isShow = false;
         } else {
             [UIView animateWithDuration:0.5 animations:^{
                 self.window.cleanButton.hidden = true;
-                self.window.frame = CGRectMake(0, 0, 50, 50);
+                self.window.frame = self.preFrame;
                 self.window.textView.frame = self.window.bounds;
             }];
             self.window.textView.userInteractionEnabled = false;
@@ -279,11 +236,11 @@ static BOOL __isShow = false;
         });
         return;
     }
-    [self.window makeKeyAndVisible];
+    [self.window setHidden:NO];
 }
 
 - (void)hideFromWindow {
-    [self.window resignKeyWindow];
+    [self.window setHidden:YES];
 }
 
 - (void)addPrintWithMessage:(NSString *)msg needReturn:(BOOL)needReturn{
@@ -304,32 +261,5 @@ static BOOL __isShow = false;
         }
     });
 }
-
-
-#pragma mark - SetGet
-//- (CGRect)frame {
-//    return self.window.frame;
-//}
-//- (void)setFrame:(CGRect)frame {
-//    self.window.frame = frame;
-//}
-//- (void)setBackgroundColor:(UIColor *)backgroundColor {
-//    self.window.backgroundColor = [backgroundColor colorWithAlphaComponent:0.3];
-//}
-//- (UIColor *)backgroundColor {
-//    return self.window.backgroundColor;
-//}
-//- (void)setFont:(UIFont *)font {
-//    self.window.textView.font = font;
-//}
-//- (UIFont *)font {
-//    return self.window.textView.font;
-//}
-//- (void)setTextColor:(UIColor *)textColor {
-//    self.window.textView.textColor = textColor;
-//}
-//- (UIColor *)textColor {
-//    return self.window.textView.textColor;
-//}
 
 @end

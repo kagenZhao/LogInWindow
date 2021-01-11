@@ -1,10 +1,6 @@
-
-
 Pod::Spec.new do |s|
-
-
   s.name         = "LogInWindow"
-  s.version      = "0.0.5"
+  s.version      = "0.1.0"
   s.summary      = "Show log message in APP window"
   s.homepage     = "https://github.com/kagenZhao"
   s.license = { :type => 'MIT', :text => <<-LICENSE
@@ -27,11 +23,11 @@ Pod::Spec.new do |s|
                     SOFTWARE.
                  LICENSE
   }
-  s.ios.deployment_target = '6.0'
+  s.ios.deployment_target = '9.0'
   s.author       = { "kagen" => "1149467687@qq.com" }
   s.source       = { :git => "https://github.com/kagenZhao/LogInWindow.git", :tag => s.version }
   s.source_files  = "Sources/*.{h,m}"
   s.dependency 'fishhook'
-
+  s.swift_version = '5.0'
 
 end
