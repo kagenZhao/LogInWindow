@@ -8,10 +8,13 @@
 
 #import "ViewController.h"
 
+#define ddLogLevel DDLogLevelAll
+
+@import CocoaLumberjack;
+
 @import LogInWindow;
 
 @interface ViewController ()
-@property (nonatomic, strong) dispatch_source_t timer;
 @end
 
 @implementation ViewController
@@ -20,12 +23,23 @@
     [super viewDidLoad];
     
     logInWindow(YES);
-    _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
-    dispatch_source_set_timer(_timer, DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
-    dispatch_source_set_event_handler(_timer, ^{
-        NSLog(@"%d", arc4random() % 9999);
-    });
-    dispatch_resume(_timer);
+    
+    NSLog(@"NSLog: 0123456789");
+    NSLog(@"NSLog: abcdefghigklmnopqrstuvwxyz");
+    NSLog(@"NSLog: 北京欢迎你");
+    NSLog(@"NSLog: *^(*&()åß∂çåß∂ƒœ∑¥øµ≤åß∫∂çø…ƒπœ∑¬µ√÷“æ˙¡ª•§");
+    NSLog(@"NSLog: 예사소리/평음い　うけ か　さ た　 に ぬ の ま み め も り る");
+    NSLog(@"NSLog: %s", [@"asd0123" cStringUsingEncoding:(NSUTF8StringEncoding)]);
+    
+    [DDLog addLogger:[DDOSLogger sharedInstance]]; // Uses os_log
+    
+    
+    DDLogInfo(@"DDLog: 0123456789");
+    DDLogInfo(@"DDLog: abcdefghigklmnopqrstuvwxyz");
+    DDLogInfo(@"DDLog: 北京欢迎你");
+    DDLogInfo(@"DDLog: *^(*&()åß∂çåß∂ƒœ∑¥øµ≤åß∫∂çø…ƒπœ∑¬µ√÷“æ˙¡ª•§");
+    DDLogInfo(@"DDLog: 예사소리/평음い　うけ か　さ た　 に ぬ の ま み め も り る");
+    DDLogInfo(@"DDLog: %s", [@"asd0123" cStringUsingEncoding:(NSUTF8StringEncoding)]);
 }
 
 

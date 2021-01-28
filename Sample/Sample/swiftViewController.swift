@@ -10,7 +10,6 @@ import UIKit
 import LogInWindow
 
 class swiftViewController: UIViewController {
-    let t = DispatchSource.makeTimerSource();
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,12 +18,11 @@ class swiftViewController: UIViewController {
     }
 
     func p() {
-        t.schedule(deadline: .now(), repeating: DispatchTimeInterval.seconds(1), leeway: DispatchTimeInterval.microseconds(1))
-        t.setEventHandler {
-            print("asdeasdve北京欢迎你aaaaasdfsdfg欢迎你*^(*&R()8y23rkvwd예사소리/평음い　うけ か　さ た　 に ぬ の ま み め も り る")
-            print("asdeasdve北京欢迎你aaaaasdfsdfg欢迎你*^(*&R()8y23rkvwdåß∂çåß∂ƒœ∑¥øµ≤åß∫∂çø…ƒπœ∑¬µ√÷“æ˙¡ª•§")
-            print("asdfasdf".cString(using: String.Encoding.ascii))
-        }
-        t.resume()
+        print("print: 0123456789")
+        print("print: abcdefghigklmnopqrstuvwxyz")
+        print("print: 北京欢迎你")
+        print("print: *^(*&()åß∂çåß∂ƒœ∑¥øµ≤åß∫∂çø…ƒπœ∑¬µ√÷“æ˙¡ª•§")
+        print("print: 예사소리/평음い　うけ か　さ た　 に ぬ の ま み め も り る")
+        print("print: ", "asd0123".cString(using: String.Encoding.ascii)!)
     }
 }

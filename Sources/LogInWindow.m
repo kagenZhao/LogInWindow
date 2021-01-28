@@ -10,6 +10,9 @@
 #import <stdio.h>
 #import <fishhook/fishhook.h>
 
+
+void rebindFunction(void);
+
 @interface LogTextView : UITextView
 
 @end
@@ -20,7 +23,7 @@
 @end
 
 @interface logInWindowManager()
-@property (nonatomic, assign) CGRect preFrame;
+@property (nonatomic, assign) CGPoint preCenter;
 @property (nonatomic, strong) OutPutWindow * window;
 @property (nonatomic, copy, readwrite) NSString *printString;
 - (void)addPrintWithMessage:(NSString *)msg needReturn:(BOOL)needReturn;
@@ -31,6 +34,10 @@
 
 
 void logInWindow(bool flag) {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        rebindFunction();
+    });
     dispatch_async(dispatch_get_main_queue(), ^{
         if (flag) {
             [[logInWindowManager share] setupInWindow];
@@ -64,9 +71,16 @@ ssize_t new_writev(int a, const struct iovec *v, int v_len) {
     return result;
 }
 
-void rebindFunction() {
-    rebind_symbols((struct rebinding[1]){{"writev", new_writev, (void *)&orig_writev}}, 1);
+void rebindFunction(void) {
     rebind_symbols((struct rebinding[1]){{"fwrite", new_fwrite, (void *)&orig_fwrite}}, 1);
+    
+    
+    // DDLog 用到了
+    // 1: writev
+    // 2: 
+    rebind_symbols((struct rebinding[1]){{"writev", new_writev, (void *)&orig_writev}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"writev", new_writev, (void *)&orig_writev}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"writev", new_writev, (void *)&orig_writev}}, 1);
 }
 
 @implementation LogTextView
@@ -116,14 +130,13 @@ void rebindFunction() {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [[logInWindowManager alloc] init];
-        instance.preFrame = CGRectMake(0, 20, 50, 50);
-        instance.window = [[OutPutWindow alloc] initWithFrame:instance.preFrame];
+        instance.preCenter = CGPointMake(25, 125);
+        instance.window = [[OutPutWindow alloc] initWithFrame:CGRectMake(0, 100, 50, 50)];
         UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:instance action:@selector(doubleTapAction:)];
         doubleTap.numberOfTapsRequired = 2;
         [instance.window addGestureRecognizer:doubleTap];
         UIPanGestureRecognizer *longP = [[UIPanGestureRecognizer alloc] initWithTarget:instance action:@selector(longGestureAction:)];
         [instance.window addGestureRecognizer:longP];
-        rebindFunction();
 //        instance.sourt_t = [instance startCapturinglogFrom:STDERR_FILENO];
     });
     return instance;
@@ -193,7 +206,7 @@ static BOOL __isShow = false;
                 CGPoint newCenter = CGPointMake(newX, newY);
                 [longP setTranslation:CGPointZero inView:self.window];
                 self.window.center = newCenter;
-                self.preFrame = self.window.frame;
+                self.preCenter = self.window.center;
             }
             break;
         default:
@@ -220,7 +233,7 @@ static BOOL __isShow = false;
         } else {
             [UIView animateWithDuration:0.5 animations:^{
                 self.window.cleanButton.hidden = true;
-                self.window.frame = self.preFrame;
+                self.window.frame = CGRectMake(self.preCenter.x - 25, self.preCenter.y - 25, 50, 50);
                 self.window.textView.frame = self.window.bounds;
             }];
             self.window.textView.userInteractionEnabled = false;
