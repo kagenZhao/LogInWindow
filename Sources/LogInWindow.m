@@ -74,13 +74,8 @@ ssize_t new_writev(int a, const struct iovec *v, int v_len) {
 void rebindFunction(void) {
     rebind_symbols((struct rebinding[1]){{"fwrite", new_fwrite, (void *)&orig_fwrite}}, 1);
     
-    
     // DDLog 用到了
-    // 1: writev
-    // 2: 
     rebind_symbols((struct rebinding[1]){{"writev", new_writev, (void *)&orig_writev}}, 1);
-//    rebind_symbols((struct rebinding[1]){{"writev", new_writev, (void *)&orig_writev}}, 1);
-//    rebind_symbols((struct rebinding[1]){{"writev", new_writev, (void *)&orig_writev}}, 1);
 }
 
 @implementation LogTextView
