@@ -85,10 +85,10 @@ size_t new_write(int fd, const void *buf, size_t nbyte) {
 void rebindFunction(void) {
     
     // Swift5.x print
-    rebind_symbols((struct rebinding[1]){{"fwrite", new_fwrite, (void *)&orig_fwrite}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"fwrite", new_fwrite, (void *)&orig_fwrite}}, 1);
     
     // NSLog, DDLog
-    rebind_symbols((struct rebinding[1]){{"writev", new_writev, (void *)&orig_writev}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"writev", new_writev, (void *)&orig_writev}}, 1);
 }
 
 @implementation LogTextView
