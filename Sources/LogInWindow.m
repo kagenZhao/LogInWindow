@@ -10,7 +10,6 @@
 #import <stdio.h>
 #import <fishhook/fishhook.h>
 
-
 void rebindFunction(void);
 
 @interface LogTextView : UITextView
@@ -23,6 +22,9 @@ void rebindFunction(void);
 @end
 
 @interface logInWindowManager()
+@property (nonatomic, strong) NSPipe *stdoutPipe;
+@property (nonatomic, strong) NSPipe *stderrPipe;
+@property (nonatomic, strong) dispatch_source_t sourt_t;
 @property (nonatomic, assign) CGPoint preCenter;
 @property (nonatomic, strong) OutPutWindow * window;
 @property (nonatomic, copy, readwrite) NSString *printString;
@@ -38,13 +40,11 @@ void logInWindow(bool flag) {
     dispatch_once(&onceToken, ^{
         rebindFunction();
     });
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (flag) {
-            [[logInWindowManager share] setupInWindow];
-        } else {
-            [[logInWindowManager share] hideFromWindow];
-        }
-    });
+    if (flag) {
+        [[logInWindowManager share] setupInWindow];
+    } else {
+        [[logInWindowManager share] hideFromWindow];
+    }
 }
 
 // swift5.x 只需要hook这一个方法即可
@@ -54,6 +54,11 @@ size_t new_fwrite(const void * __restrict ptr, size_t size, size_t nitems, FILE 
     __block NSString *s = [NSString stringWithCString:str encoding:NSUTF8StringEncoding];
     [[logInWindowManager share] addPrintWithMessage:s needReturn:false];
     return orig_fwrite(ptr, size, nitems, stream);
+}
+
+static int (*ori_fprintf)(FILE * __restrict, const char * __restrict, ...);
+int new_fprintf(FILE * __restrict a, const char * __restrict b, ...) {
+    return ori_fprintf(a, b);
 }
 
 // 这个方法就是NSLog底层调用.. 所以把不hook NSLog了
@@ -71,7 +76,14 @@ ssize_t new_writev(int a, const struct iovec *v, int v_len) {
     return result;
 }
 
+static size_t (*ori_write)(int fd, const void *buf, size_t nbyte);
+size_t new_write(int fd, const void *buf, size_t nbyte) {
+    return ori_write(fd, buf, nbyte);
+}
+
+// 真机无效
 void rebindFunction(void) {
+    
     // Swift5.x print
     rebind_symbols((struct rebinding[1]){{"fwrite", new_fwrite, (void *)&orig_fwrite}}, 1);
     
@@ -133,43 +145,36 @@ void rebindFunction(void) {
         [instance.window addGestureRecognizer:doubleTap];
         UIPanGestureRecognizer *longP = [[UIPanGestureRecognizer alloc] initWithTarget:instance action:@selector(longGestureAction:)];
         [instance.window addGestureRecognizer:longP];
-//        instance.sourt_t = [instance startCapturinglogFrom:STDERR_FILENO];
+        instance.stdoutPipe = [[NSPipe alloc] init];
+        instance.stderrPipe = [[NSPipe alloc] init];
+        
+        setvbuf(stdout, NULL, _IONBF, 0);
+        setvbuf(stderr, NULL, _IONBF, 0);
+        
+        int ori_stdout_fileNo = dup(STDOUT_FILENO);
+        int ori_stderr_fileNo = dup(STDERR_FILENO);
+        
+        dup2(instance.stdoutPipe.fileHandleForWriting.fileDescriptor, STDOUT_FILENO);
+        dup2(instance.stderrPipe.fileHandleForWriting.fileDescriptor, STDERR_FILENO);
+        
+        instance.stdoutPipe.fileHandleForReading.readabilityHandler = ^(NSFileHandle * _Nonnull handle) {
+            NSData *data = handle.availableData;
+            NSString *str = [[NSString alloc] initWithData:data encoding:(NSUTF8StringEncoding)];
+            [instance addPrintWithMessage:str needReturn:NO];
+            const char * utf8Str = str.UTF8String;
+            write(ori_stdout_fileNo,utf8Str,strlen(utf8Str));
+        };
+        
+        instance.stderrPipe.fileHandleForReading.readabilityHandler = ^(NSFileHandle * _Nonnull handle) {
+            NSData *data = handle.availableData;
+            NSString *str = [[NSString alloc] initWithData:data encoding:(NSUTF8StringEncoding)];
+            [instance addPrintWithMessage:str needReturn:NO];
+            const char * utf8Str = str.UTF8String;
+            write(ori_stderr_fileNo,utf8Str,strlen(utf8Str));
+        };
     });
     return instance;
 }
-
-// 通过fd 绑定 不能拦截swift 的 print
-//- (dispatch_source_t)startCapturinglogFrom:(int)fd {
-//    int origianlFD = fd;
-//    int originalStdHandle = dup(fd);
-//    int fildes[2];
-//    pipe(fildes);
-//    dup2(fildes[1], fd);
-//    close(fildes[1]);
-//    fd = fildes[0];
-//    NSMutableData *data = [[NSMutableData alloc] init];
-//    fcntl(fd, F_SETFL, O_NONBLOCK);
-//    dispatch_source_t source = dispatch_source_create(DISPATCH_SOURCE_TYPE_READ, fd, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0));
-//
-//    int writeEnd = fildes[1];
-//    dispatch_source_set_cancel_handler(source, ^{
-//        close(writeEnd);
-//        dup2(originalStdHandle, origianlFD);
-//    });
-//    dispatch_source_set_event_handler(source, ^{
-//        @autoreleasepool {
-//            char buffer[1024 * 10];
-//            ssize_t size = read(fd, (void*)buffer, (size_t)(sizeof(buffer)));
-//            [data setLength:0];
-//            [data appendBytes:buffer length:size];
-//            NSString *aString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//            [self addPrintWithMessage:aString needReturn:YES];
-//            printf("\n%s\n",[aString UTF8String]);
-//        }
-//    });
-//    dispatch_resume(source);
-//    return source;
-//}
 
 static BOOL __isShow = false;
 

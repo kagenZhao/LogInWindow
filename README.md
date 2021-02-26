@@ -14,6 +14,5 @@
  log方法可使用
  1. NSLog
  2. swift的print
- 3. DDLog中的控制太打印
- 2. println
+ 3. DDLog 中的 DDOSLogger
  

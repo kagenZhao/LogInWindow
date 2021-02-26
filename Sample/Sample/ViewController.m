@@ -23,6 +23,14 @@
     [super viewDidLoad];
     
     logInWindow(YES);
+
+    
+    printf("printf: 0123456789");
+    printf("printf: abcdefghigklmnopqrstuvwxyz");
+    printf("printf: 北京欢迎你");
+    printf("printf: *^(*&()åß∂çåß∂ƒœ∑¥øµ≤åß∫∂çø…ƒπœ∑¬µ√÷“æ˙¡ª•§");
+    printf("printf: 예사소리/평음い　うけ か　さ た　 に ぬ の ま み め も り る");
+    printf("printf: %s", [@"asd0123" cStringUsingEncoding:(NSUTF8StringEncoding)]);
     
     NSLog(@"NSLog: 0123456789");
     NSLog(@"NSLog: abcdefghigklmnopqrstuvwxyz");
